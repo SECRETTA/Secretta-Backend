@@ -1,5 +1,7 @@
 const UserTable = require('../External Interfaces/userTable');
 const ValidateUser = require('../UseCases/validateUser');
+const errorView = require('../View/errorView')
+
 
 module.exports = app => {
     
@@ -46,7 +48,67 @@ module.exports = app => {
             console.log("Dados de usuário inválidos.");
             res.send('Dados de usuário inválidos.\n');
         }
+    });
+
+    //Updating user with json user object
+    app.post('/api/user/update', (req, res) => {
+        let User = new UserTable();
+        let Validator = new ValidateUser();
+        const updateUser = req.body
+        User.getUserIdByUsername(updateUser.Username, user_response => {
+            if (user_response === undefined) {
+                view = new errorView(500)
+                res.status(500).send(view.html())
+            }
+            else {
+                console.log(user_response)
+                if(Validator.ValidateAll(updateUser)){
+                    console.log(updateUser)
+                    User.updateById(
+                        updateUser.Name,
+                        updateUser.Phone,
+                        updateUser.Email,
+                        updateUser.Username,
+                        updateUser.Bio,
+                        user_response)
+                        res.send('Dados atualizados com sucesso\n');
+                } else { 
+                    console.log("Dados de usuário inválidos.");
+                    res.send('Dados de usuário inválidos.\n');
+                }
+            }
+        })
     })
+
+    //Delete user receiving an entire json
+    app.post('/api/user/delete/', (req, res) => {
+        let User = new UserTable();
+        let Validator = new ValidateUser();
+        const deleteUser = req.body
+        console.log(deleteUser)
+        User.getUserIdByUsername(deleteUser.Username, user_response => {
+            if (user_response === undefined) {
+                view = new errorView(500)
+                res.status(500).send(view.html())
+            }
+            else {
+                if(Validator.ValidateAll(deleteUser)){
+                    console.log(deleteUser)
+                    User.deleteUserByJson(
+                        deleteUser.Name,
+                        deleteUser.Phone,
+                        deleteUser.Email,
+                        deleteUser.Username,
+                        deleteUser.Bio,
+                        user_response)
+                        res.send('Usuario deletado com sucesso.\n');
+                } else { 
+                    console.log("Dados de usuário inválidos.");
+                    res.send('Dados de usuário inválidos.\n');
+                }
+            }
+        })
+    });
 
     
 }

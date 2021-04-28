@@ -14,7 +14,7 @@ class ValidateUser {
     }
 
     ValidateName(param) {
-        return this.ValidateLength(param, 30) && (param.match(/^[\S ]+$/u) !== null);
+        return this.ValidateLength(param, 30) // && (param.match(/^[\S ]+$/u) !== null);
     }
 
     ValidatePhone(param) {
