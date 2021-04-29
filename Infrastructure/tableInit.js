@@ -1,14 +1,13 @@
 const DataBase = require('./database');
 
-class TableSetup {
+class TableInit {
     // DOC ME PLEASE!
 
-    constructor() {
-        this.database = new DataBase();
-        this.db = this.database.pool;
+    static db() {
+        return (new DataBase).pool;
     }
 
-    createTables(callback) {
+    static createTables(callback) {
         // DOC ME PLEASE!
         const user_sql = "\
         CREATE TABLE IF NOT EXISTS Users(\
@@ -33,27 +32,27 @@ class TableSetup {
             FOREIGN KEY (UserID) REFERENCES Users (UserID)\
             );"
 
-        this.db.query(user_sql, err => {
+        this.db().query(user_sql, err => {
             if (err) {
                 console.log(err);
-                callback(false);
-            } else {
-                console.log("Criação da tabela de usuários bem sucedida.");
+                callback("Erro ao criar tabela de usuários.");
+                return;
             }
+            else
+                console.log("Criação da tabela de usuários bem sucedida.");
         })
 
-        this.db.query(task_sql, err => {
+        this.db().query(task_sql, err => {
             if (err) {
-                console.log(err)
-                callback(false);
-            } else {
-                console.log("Criação da tabela de tarefas bem sucedida.")
+                console.log(err);
+                callback("Erro ao criar tabela de tarefas.");
             }
+            else
+                console.log("Criação da tabela de tarefas bem sucedida.");
         })
-        callback(true);
     }
 
-    populateDatabase(callback) {
+    static populateDatabase(callback) {
         // DOC ME PLEASE!
         const user_sql = "\
         INSERT INTO Users (\
@@ -103,25 +102,24 @@ class TableSetup {
             1\
         );"
 
-        this.db.query(user_sql, err => {
+        this.db().query(user_sql, err => {
             if (err) {
                 console.log(err);
-                callback(false);
+                callback("Erro ao popular tabela de usuários.");
             } else {
                 console.log("Tabela de usuários populada com sucesso.");
             }
         })
 
-        this.db.query(task_sql, err => {
+        this.db().query(task_sql, err => {
             if (err) {
                 console.log(err);
-                callback(false);
+                callback("Erro ao popular tabela de tarefas.");
             } else {
                 console.log("Tabela de tarefas populada com sucesso.");
             }
         })
-        callback(true);
     }
 }
 
-module.exports = TableSetup;
+module.exports = TableInit;

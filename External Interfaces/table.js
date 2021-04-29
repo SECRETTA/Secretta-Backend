@@ -1,9 +1,8 @@
 const DataBase = require("../Infrastructure/database");
 
 class Table {
-    constructor() {
-        this.database = new DataBase();
-        this.db = this.database.pool;
+    static db() {
+        return (new DataBase).pool
     }
 }
 module.exports = Table
