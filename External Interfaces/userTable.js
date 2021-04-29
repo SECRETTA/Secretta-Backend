@@ -32,7 +32,7 @@ class UserTable extends Table {
         const sql = 'SELECT * FROM Users';
         this.db().query(sql, (err, results) => {
             if (err)
-                console.log("ERROR @ UserTable.getAll\n", err);
+                console.log(`ERROR @ UserTable.getAll\n${err}\n`, err);
             else
                 callback(results);
         })

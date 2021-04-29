@@ -7,15 +7,14 @@ module.exports = app => {
     
     // Returning all users
     app.get('/api/user', (req, res) => {
-        (new UserTable).getAll(response => {
+        UserTable.getAll(response => {
             res.json(response);
         })
     })
 
     // Get users by username
     app.get('/api/user/:userName', function(req, res) {
-        let User = new UserTable();
-        User.getByUsername(req.params.userName, response=> {
+        UserTable.getByUsername(req.params.userName, response=> {
             res.json(response);
         })
     });
@@ -23,20 +22,18 @@ module.exports = app => {
     
     // Get userId by username
     app.get('/api/user/id/:userName', function(req, res) {
-        let User = new UserTable();
-        User.getUserIdByUsername(req.params.userName, response=> {
+        UserTable.getUserIdByUsername(req.params.userName, response=> {
             res.json(response);
         })
     });
 
     // Adding user
     app.post('/api/user/add', (req, res) => {
-        let User = new UserTable();
         let Validator = new ValidateUser();
         const newUser = req.body
         if(Validator.ValidateAll(newUser)){
             console.log(newUser)
-            User.addUser(
+            UserTable.addUser(
                 newUser.Name,
                 newUser.Phone,
                 newUser.Email,
@@ -52,10 +49,9 @@ module.exports = app => {
 
     //Updating user with json user object
     app.post('/api/user/update', (req, res) => {
-        let User = new UserTable();
         let Validator = new ValidateUser();
         const updateUser = req.body
-        User.getUserIdByUsername(updateUser.Username, user_response => {
+        UserTable.getUserIdByUsername(updateUser.Username, user_response => {
             if (user_response === undefined) {
                 view = new errorView(500)
                 res.status(500).send(view.html())
@@ -64,7 +60,7 @@ module.exports = app => {
                 console.log(user_response)
                 if(Validator.ValidateAll(updateUser)){
                     console.log(updateUser)
-                    User.updateById(
+                    UserTable.updateById(
                         updateUser.Name,
                         updateUser.Phone,
                         updateUser.Email,
@@ -82,11 +78,10 @@ module.exports = app => {
 
     //Delete user receiving an entire json
     app.post('/api/user/delete/', (req, res) => {
-        let User = new UserTable();
         let Validator = new ValidateUser();
         const deleteUser = req.body
         console.log(deleteUser)
-        User.getUserIdByUsername(deleteUser.Username, user_response => {
+        UserTable.getUserIdByUsername(deleteUser.Username, user_response => {
             if (user_response === undefined) {
                 view = new errorView(500)
                 res.status(500).send(view.html())
@@ -94,7 +89,7 @@ module.exports = app => {
             else {
                 if(Validator.ValidateAll(deleteUser)){
                     console.log(deleteUser)
-                    User.deleteUserByJson(
+                    UserTable.deleteUserByJson(
                         deleteUser.Name,
                         deleteUser.Phone,
                         deleteUser.Email,
