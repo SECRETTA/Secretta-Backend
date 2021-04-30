@@ -4,7 +4,7 @@ class TaskTable extends Table {
 
     static addTask(Name, Place, Customer, Timestamp) {
         // DOC ME PLEASE!
-        const sql = "INSERT INTO Tasks (Name, Place, Customer, Timestamp, UserID) VALUES (?,?,?,?));"
+        const sql = "INSERT INTO Tasks (Name, Place, Customer, Timestamp, UserID) VALUES (?,?,?,?))"
         this.db().query(sql, [Name, Place, Customer, Timestamp], (err, results) => {
             if (err)
                 console.log("ERROR @ TaskTable.addTask\n", err);
@@ -15,7 +15,7 @@ class TaskTable extends Table {
 
     static getAll(callback) {
         // DOC ME PLEASE!
-        const sql = 'SELECT * FROM Tasks;'
+        const sql = 'SELECT * FROM Tasks'
         this.db().query(sql, (err, results) => {
             if (err)
                 console.log("ERROR @ TaskTable.getAll\n", err);
@@ -24,17 +24,17 @@ class TaskTable extends Table {
         })
     }
 
-    static getByUsername(parameter, callback) {
+    static getByUserID(UserID, callback) {
         // DOC ME PLEASE!
-        const sql = 'SELECT * FROM Tasks WHERE UserID = ?;'
-        this.db().query(sql, parameter, (err, results) => {
+        const sql_query = 'SELECT * FROM Tasks WHERE UserID = ?'
+        this.db().query(sql_query, [UserID], (err, results) => {
             if (err)
                 console.log("ERROR @ TaskTable.getByUsername\n", err);
             else {
-                if (resultados.length > 0) {
+                if (results.length > 0) {
                     callback(results)
                 } else {
-                    callback([])
+                    callback(null)
                 }
             }
         })

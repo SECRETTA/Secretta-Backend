@@ -22,7 +22,10 @@ class UserTable extends Table {
                 console.log("ERROR @ UserTable.getUserIdByUsername\n", err);
             }
             else {
-                callback(resultados[0].UserID);
+                if (resultados[0] === undefined)
+                    callback(null);
+                else
+                    callback(resultados[0].UserID);
             }
         })
     }

@@ -54,6 +54,7 @@ module.exports = app => {
         UserTable.getUserIdByUsername(updateUser.Username, user_response => {
             if (user_response === undefined) {
                 view = new errorView(500)
+                view.message(`Usuário '${updateUser.Username}' não encontrado.`)
                 res.status(500).send(view.html())
             }
             else {

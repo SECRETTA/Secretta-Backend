@@ -16,6 +16,13 @@ class DataBase {
         return DataBase.__ref__;
     }
 
+    toString() {
+        return `MySQL rodando.
+        host = ${this.config.host.host}
+        user = ${this.config.host.user}
+        port = ${this.config.host.port}`;
+    }
+
     init(configPath) {
         // Retrieve config from TOML .conf file.
         this.config = toml.parse(fs.readFileSync(configPath, 'utf-8'));
@@ -23,12 +30,11 @@ class DataBase {
         // Create connection pool to handle multiple requests simultaneously.
         this.pool = mysql.createPool({
             ...this.config.host,
+            multipleStatements: true,
             waitForConnections: true,
             connectionLimit: 20,
             queueLimit: 0
           });
-
-        console.log("MySQL Pool Created.")
     }
 }
 
