@@ -1,5 +1,4 @@
 const DataBase = require('./database');
-import { EmailQueries } from "./emailsInit"
 
 
 class TableInit {
@@ -58,6 +57,7 @@ class TableInit {
         CREATE TABLE IF NOT EXISTS Emails(
             Email varchar(30) NOT NULL,
             UserID int NOT NULL, AUTO_INCREMENT,
+            Timestamp Datetime NOT NULL,
             PRIMARY KEY (UserID)
         )`
 
@@ -117,7 +117,13 @@ class TableInit {
             'Grupo de PA',
             '2021-04-19 00:00:00',
             1
-        );` + EmailQueries.QUERY_INSERT_EMAIL.replace('?', 'luizgiserman@poli.ufrj.br');
+        );
+        INSERT INTO Emails (
+            Email
+        ) VALUES (
+        'luizgiserman@poli.ufrj.br',
+        '2021-04-19 00:00:00'
+        );`
 
         return new Promise((resolve, reject) => {
             this.db().query(sql_query, err => {
