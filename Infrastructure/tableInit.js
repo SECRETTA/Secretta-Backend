@@ -1,6 +1,4 @@
 const DataBase = require('./database');
-import { EmailQueries } from "./emailsInit"
-
 
 class TableInit {
     // DOC ME PLEASE!
@@ -19,7 +17,7 @@ class TableInit {
 
     static  deleteTables() {
         // DOC ME PLEASE!
-        const sql_query= "DROP TABLE IF EXISTS Tasks; DROP TABLE IF EXISTS Users; DROP TABLE IF EXISTS Emails"
+        const sql_query= "DROP TABLE IF EXISTS Tasks; DROP TABLE IF EXISTS Users;"
 
         return new Promise((resolve, reject) => {
             this.db().query(sql_query, err => {
@@ -54,12 +52,7 @@ class TableInit {
             PRIMARY KEY (ServiceID),
             UserID int NOT NULL,
             FOREIGN KEY (UserID) REFERENCES Users (UserID)
-            );
-        CREATE TABLE IF NOT EXISTS Emails(
-            Email varchar(30) NOT NULL,
-            UserID int NOT NULL, AUTO_INCREMENT,
-            PRIMARY KEY (UserID)
-        )`
+            );`
 
         return new Promise((resolve, reject) => {
             this.db().query(sql_query, err => {
@@ -91,7 +84,9 @@ class TableInit {
             ), (
             'Pedro Maciel Xavier',
             '24999999999',
-            'pedromxavier@poli.ufrj.brclass
+            'pedromxavier@poli.ufrj.br',
+            'pedromxavier',
+            'Um menino sonhador'
         );
         INSERT INTO Tasks (
             Name,
@@ -117,7 +112,7 @@ class TableInit {
             'Grupo de PA',
             '2021-04-19 00:00:00',
             1
-        );` + EmailQueries.QUERY_INSERT_EMAIL.replace('?', 'luizgiserman@poli.ufrj.br');
+        );`
 
         return new Promise((resolve, reject) => {
             this.db().query(sql_query, err => {
