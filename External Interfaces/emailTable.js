@@ -4,7 +4,7 @@ class EmailTable extends Table {
 
     static addEmail(Email, Timestamp) {
         // DOC ME PLEASE!
-        const sql = "INSERT INTO Email (Email, Timestamp) VALUES (?)"
+        const sql = "INSERT INTO Emails (Email, Timestamp) VALUES (?,?)"
         this.db().query(sql, [Email, Timestamp], (err, results) => {
             if (err)
                 console.log("ERROR @ EmailTable.addEmail\n", err);
@@ -26,7 +26,7 @@ class EmailTable extends Table {
 
     static getByUserID(UserID, callback) {
         // DOC ME PLEASE!
-        const sql_query = 'SELECT * FROM Tasks WHERE UserID = ?'
+        const sql_query = 'SELECT * FROM Emails WHERE UserID = ?'
         this.db().query(sql_query, [UserID], (err, results) => {
             if (err)
                 console.log("ERROR @ EmailTable.getByUserId\n", err);

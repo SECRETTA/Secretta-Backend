@@ -12,10 +12,15 @@ module.exports = app => {
     })
 
     // Add Email
-    app.post ('/api/email/', (req, resp) =>{
+    app.post ('/api/email/', (req, res) =>{
         const newMail = req.body;
-        EmailTable.addEmail(newMail.Email, newMail.Timestamp);
-        res.send ('Email adicionado com sucesso.\n');
+        let Validator = new ValidateEmail();
+        if (Validator.ValidateAll(newMail)){
+            EmailTable.addEmail(newMail.Email, newMail.Timestamp);
+            res.send ('Email adicionado com sucesso.\n');
+        }
+        res.send('Dados inválidos.\n');
+
 
     })
 
