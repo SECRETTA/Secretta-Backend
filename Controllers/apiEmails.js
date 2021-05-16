@@ -1,5 +1,5 @@
-import { EmailTable } from '../External Interfaces/EmailTable'
-import { ValidateEmail } from '../UseCases/validateUser'
+const EmailTable = require('../External Interfaces/emailTable')
+const ValidateEmail = require('../UseCases/validateEmail')
 const UserTable = require('../External Interfaces/userTable')
 const errorView = require('../View/errorView')
 
@@ -32,6 +32,4 @@ module.exports = app => {
         
     })
 
-
-    // app.post('/api/email/delete/')
 }

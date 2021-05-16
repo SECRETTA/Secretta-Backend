@@ -25,6 +25,4 @@ class ValidateEmail {
     }
 }
 
-export {
-    ValidateEmail
-}
+module.exports = ValidateEmail

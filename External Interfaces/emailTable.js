@@ -79,8 +79,4 @@ class EmailTable extends Table {
     }
 }
 
-export {
-    EmailTable
-}
-
-// module.exports = EmailTable
+module.exports = EmailTable
