@@ -1,9 +1,14 @@
 const customExpress = require('./config/customExpress');
 const DataBase = require('./Infrastructure/database');
 const TableInit = require('./Infrastructure/tableInit');
+const SecrettaBot = require('./TelegramBot/secrettaBot');
 const app = customExpress();
 
 TableInit.run(console.log);
+
+let bot = new SecrettaBot;
+
+bot.run();
 
 app.listen(3000, () => {
     console.log(`\x1b[35;1m
