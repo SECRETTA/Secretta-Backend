@@ -43,6 +43,13 @@ class TableInit {
             UserID int NOT NULL AUTO_INCREMENT,
             PRIMARY KEY (UserID)
             );
+        CREATE TABLE IF NOT EXISTS Customers (
+            Name varchar(30),
+            Phone varchar(11),
+            Email varchar(30),
+            CustomerID int NOT NULL AUTO_INCREMENT,
+            PRIMARY KEY (CustomerID)
+        );
         CREATE TABLE IF NOT EXISTS Tasks(
             Name varchar(30) NOT NULL,
             Place varchar(30) NOT NULL,
@@ -52,7 +59,16 @@ class TableInit {
             PRIMARY KEY (ServiceID),
             UserID int NOT NULL,
             FOREIGN KEY (UserID) REFERENCES Users (UserID)
-            );`
+            );
+        CREATE TABLE IF NOT EXISTS Chats(
+            TelegramUserID int NOT NULL,
+            UserID int NOT NULL,
+            CustomerID int NOT NULL,
+            PRIMARY KEY (TelegramUserID),
+            FOREIGN KEY (UserID) REFERENCES Users (UserID),
+            FOREIGN KEY (CustomerID) REFERENCES Customers (CustomerID),
+        );   
+        `
 
         return new Promise((resolve, reject) => {
             this.db().query(sql_query, err => {
