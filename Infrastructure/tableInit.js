@@ -1,6 +1,5 @@
 const DataBase = require('./database');
 
-
 class TableInit {
     // DOC ME PLEASE!
 
@@ -18,7 +17,7 @@ class TableInit {
 
     static  deleteTables() {
         // DOC ME PLEASE!
-        const sql_query= "DROP TABLE IF EXISTS Tasks; DROP TABLE IF EXISTS Users; DROP TABLE IF EXISTS Emails"
+        const sql_query= "DROP TABLE IF EXISTS Tasks; DROP TABLE IF EXISTS Users;"
 
         return new Promise((resolve, reject) => {
             this.db().query(sql_query, err => {
@@ -59,7 +58,7 @@ class TableInit {
             UserID int NOT NULL AUTO_INCREMENT,
             Timestamp Datetime NOT NULL,
             PRIMARY KEY (UserID)
-        );`
+            );`
 
         return new Promise((resolve, reject) => {
             this.db().query(sql_query, err => {
