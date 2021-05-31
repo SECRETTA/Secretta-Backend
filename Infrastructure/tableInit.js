@@ -84,7 +84,13 @@ class TableInit {
             FOREIGN KEY (UserID) REFERENCES Users (UserID),
             FOREIGN KEY (CustomerID) REFERENCES Customers (CustomerID),
         );
-        `
+        CREATE TABLE IF NOT EXISTS Emails(
+            Email varchar(30) NOT NULL,
+            UserID int NOT NULL AUTO_INCREMENT,
+            Timestamp Datetime NOT NULL,
+            PRIMARY KEY (UserID)
+            );`
+
         return new Promise((resolve, reject) => {
             this.db().query(sql_query, err => {
                 if (err)
@@ -143,6 +149,13 @@ class TableInit {
             'Grupo de PA',
             '2021-04-19 00:00:00',
             1
+        );
+        INSERT INTO Emails (
+            Email,
+            Timestamp
+        ) VALUES (
+        'luizgiserman@poli.ufrj.br',
+        '2021-04-19 00:00:00'
         );`
 
         return new Promise((resolve, reject) => {
