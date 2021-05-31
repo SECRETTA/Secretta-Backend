@@ -10,14 +10,23 @@ class TableInit {
     static async run(callback) {
         // populate_tables = this.populateTables();
 
+        console.log('iniciou ---------- ')
         await this.deleteTables();
+        console.log('deletou aqui')
         await this.createTables();
         await this.populateTables();
     }
 
     static  deleteTables() {
         // DOC ME PLEASE!
-        const sql_query= "DROP TABLE IF EXISTS Tasks; DROP TABLE IF EXISTS Users;"
+        const sql_query= `DROP TABLE IF EXISTS Tasks;
+                          DROP TABLE IF EXISTS Users;
+                          DROP TABLE IF EXISTS Session;
+                          DROP TABLE IF EXISTS Schedules;
+                          DROP TABLE IF EXISTS Customers;
+                          DROP TABLE IF EXISTS Tasks;
+                          DROP TABLE IF EXISTS Chats;
+                          DROP TABLE IF EXISTS Emails;`
 
         return new Promise((resolve, reject) => {
             this.db().query(sql_query, err => {
@@ -44,13 +53,6 @@ class TableInit {
             UserID int NOT NULL AUTO_INCREMENT,
             PRIMARY KEY (UserID)
         );
-        CREATE TABLE IF NOT EXISTS Schedules(
-            ScheduleID,
-            SessionID,
-            UserID int,
-            FOREIGN KEY (SessionID) REFERENCES Session (SessionID),
-            FOREIGN KEY (UserID) REFERENCES Users (UserID)
-        );
         CREATE TABLE IF NOT EXISTS Session(
             SessionID int,
             Recurrent bool,
@@ -58,11 +60,19 @@ class TableInit {
             End Datetime,
             PRIMARY KEY (SessionID)
         );
+        CREATE TABLE IF NOT EXISTS Schedules(
+            ScheduleID int NOT NULL AUTO_INCREMENT,
+            SessionID int,
+            UserID int,
+            PRIMARY KEY (ScheduleID),
+            FOREIGN KEY (SessionID) REFERENCES Session (SessionID),
+            FOREIGN KEY (UserID) REFERENCES Users (UserID)
+        );
         CREATE TABLE IF NOT EXISTS Customers (
+            CustomerID int NOT NULL AUTO_INCREMENT,
             Name varchar(30),
             Phone varchar(11),
             Email varchar(30),
-            CustomerID int NOT NULL AUTO_INCREMENT,
             PRIMARY KEY (CustomerID)
         );
         CREATE TABLE IF NOT EXISTS Tasks(
@@ -71,8 +81,8 @@ class TableInit {
             CustomerID varchar(30) NOT NULL,
             Start Datetime NOT NULL,
             ServiceID int NOT NULL AUTO_INCREMENT,
-            PRIMARY KEY (ServiceID),
             UserID int NOT NULL,
+            PRIMARY KEY (ServiceID),
             FOREIGN KEY (UserID) REFERENCES Users (UserID),
             FOREIGN KEY (CustomerID) REFERENCES Customers (CustomerID)
         );
@@ -85,11 +95,11 @@ class TableInit {
             FOREIGN KEY (CustomerID) REFERENCES Customers (CustomerID),
         );
         CREATE TABLE IF NOT EXISTS Emails(
-            Email varchar(30) NOT NULL,
             UserID int NOT NULL AUTO_INCREMENT,
+            Email varchar(30) NOT NULL,
             Timestamp Datetime NOT NULL,
             PRIMARY KEY (UserID)
-            );`
+        );`
 
         return new Promise((resolve, reject) => {
             this.db().query(sql_query, err => {

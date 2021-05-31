@@ -1,15 +1,15 @@
 const customExpress = require('./config/customExpress');
 const DataBase = require('./Infrastructure/database');
 const TableInit = require('./Infrastructure/tableInit');
-const SecrettaBot = require('./TelegramBot/secrettaBot');
+// const SecrettaBot = require('./TelegramBot/secrettaBot');
 const cors = require('cors');
 const app = customExpress();
 
 TableInit.run(console.log);
 
-let bot = new SecrettaBot;
+// let bot = new SecrettaBot;
 
-bot.run();
+// bot.run();
 
 app.use(cors())
 app.listen(3000, () => {
