@@ -20,13 +20,13 @@ class TableInit {
     static  deleteTables() {
         // DOC ME PLEASE!
         const sql_query= `DROP TABLE IF EXISTS Tasks;
-                          DROP TABLE IF EXISTS Users;
-                          DROP TABLE IF EXISTS Session;
                           DROP TABLE IF EXISTS Schedules;
+                          DROP TABLE IF EXISTS Chats;
                           DROP TABLE IF EXISTS Customers;
                           DROP TABLE IF EXISTS Tasks;
-                          DROP TABLE IF EXISTS Chats;
-                          DROP TABLE IF EXISTS Emails;`
+                          DROP TABLE IF EXISTS Emails;
+                          DROP TABLE IF EXISTS Session;
+                          DROP TABLE IF EXISTS Users;`
 
         return new Promise((resolve, reject) => {
             this.db().query(sql_query, err => {
@@ -76,9 +76,9 @@ class TableInit {
             PRIMARY KEY (CustomerID)
         );
         CREATE TABLE IF NOT EXISTS Tasks(
-            Name varchar(30) NOT NULL, --title
-            Place varchar(30) NOT NULL, --aumentar tamanho
-            CustomerID varchar(30) NOT NULL,
+            Name varchar(30) NOT NULL,
+            Place varchar(30) NOT NULL,
+            CustomerID int NOT NULL,
             Start Datetime NOT NULL,
             ServiceID int NOT NULL AUTO_INCREMENT,
             UserID int NOT NULL,
@@ -92,7 +92,7 @@ class TableInit {
             CustomerID int NOT NULL,
             PRIMARY KEY (TelegramUserID),
             FOREIGN KEY (UserID) REFERENCES Users (UserID),
-            FOREIGN KEY (CustomerID) REFERENCES Customers (CustomerID),
+            FOREIGN KEY (CustomerID) REFERENCES Customers (CustomerID)
         );
         CREATE TABLE IF NOT EXISTS Emails(
             UserID int NOT NULL AUTO_INCREMENT,
@@ -135,28 +135,39 @@ class TableInit {
             'pedromxavier',
             'Um menino sonhador'
         );
+
+        INSERT INTO Customers (
+            Name,
+            Phone,
+            Email
+        ) VALUES (
+            'Primo Rico',
+            '21979797979',
+            'silviosantos@sbt.com.br'
+        );
+
         INSERT INTO Tasks (
             Name,
             Place,
-            Customer,
-            Timestamp,
+            CustomerID,
+            Start,
             UserID
         ) VALUES (
             'Limpar o laboratorio',
             'UFRJ',
-            'Felipe',
+            1,
             '2021-04-18 22:22:22',
-            2
+            1
             ), (
             'Tomar vergonha na cara',
             'Petropolis',
-            'Pedro',
+            1,
             '2021-04-18 22:20:22',
             2
             ), (
             'Criar os Endpoints de PA',
             'Rio de Janeiro',
-            'Grupo de PA',
+            1,
             '2021-04-19 00:00:00',
             1
         );
