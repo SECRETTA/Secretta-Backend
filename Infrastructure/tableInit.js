@@ -40,20 +40,51 @@ class TableInit {
             Email varchar(30),
             Username varchar(12),
             Bio varchar(100),
+            TaskInterval int,
             UserID int NOT NULL AUTO_INCREMENT,
             PRIMARY KEY (UserID)
-            );
+        );
+        CREATE TABLE IF NOT EXISTS Schedules(
+            ScheduleID,
+            SessionID,
+            UserID int,
+            FOREIGN KEY (SessionID) REFERENCES Session (SessionID),
+            FOREIGN KEY (UserID) REFERENCES Users (UserID)
+        );
+        CREATE TABLE IF NOT EXISTS Session(
+            SessionID int,
+            Recurrent bool,
+            Start Datetime,
+            End Datetime,
+            PRIMARY KEY (SessionID)
+        );
+        CREATE TABLE IF NOT EXISTS Customers (
+            Name varchar(30),
+            Phone varchar(11),
+            Email varchar(30),
+            CustomerID int NOT NULL AUTO_INCREMENT,
+            PRIMARY KEY (CustomerID)
+        );
         CREATE TABLE IF NOT EXISTS Tasks(
-            Name varchar(30) NOT NULL,
-            Place varchar(30) NOT NULL,
-            Customer varchar(30) NOT NULL,
-            Timestamp Datetime NOT NULL,
+            Name varchar(30) NOT NULL, --title
+            Place varchar(30) NOT NULL, --aumentar tamanho
+            CustomerID varchar(30) NOT NULL,
+            Start Datetime NOT NULL,
             ServiceID int NOT NULL AUTO_INCREMENT,
             PRIMARY KEY (ServiceID),
             UserID int NOT NULL,
-            FOREIGN KEY (UserID) REFERENCES Users (UserID)
-            );`
-
+            FOREIGN KEY (UserID) REFERENCES Users (UserID),
+            FOREIGN KEY (CustomerID) REFERENCES Customers (CustomerID)
+        );
+        CREATE TABLE IF NOT EXISTS Chats(
+            TelegramUserID int NOT NULL,
+            UserID int NOT NULL,
+            CustomerID int NOT NULL,
+            PRIMARY KEY (TelegramUserID),
+            FOREIGN KEY (UserID) REFERENCES Users (UserID),
+            FOREIGN KEY (CustomerID) REFERENCES Customers (CustomerID),
+        );
+        `
         return new Promise((resolve, reject) => {
             this.db().query(sql_query, err => {
                 if (err)
