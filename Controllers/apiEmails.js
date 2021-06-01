@@ -18,10 +18,9 @@ module.exports = app => {
         if (Validator.ValidateAll(newMail)){
             EmailTable.addEmail(newMail.Email, newMail.Timestamp);
             res.send ('Email adicionado com sucesso.\n');
+            return;
         }
         res.send('Dados inválidos.\n');
-
-
     })
 
     //Updating Email with json Email object
@@ -32,6 +31,7 @@ module.exports = app => {
         if (Validator.ValidateAll(updateUser)){
             EmailTable.updateById(updateUser.Email, updateUser.Id);
             res.send ('Email alterado com sucesso.\n');
+            return;
         }
         res.send('Dados de email inválidos.\n');
         

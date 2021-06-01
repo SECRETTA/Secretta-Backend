@@ -27,6 +27,13 @@ module.exports = app => {
         })
     });
 
+    // Get user by ID
+    app.get('/api/user/userid/:userID', function (req, res){
+        UserTable.getUserByID(req.params.userID, response=>{
+            res.json(response);
+        })
+    })
+
     // Adding user
     app.post('/api/user/add', (req, res) => {
         let Validator = new ValidateUser();

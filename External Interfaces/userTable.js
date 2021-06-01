@@ -14,6 +14,21 @@ class UserTable extends Table {
         })
     }
 
+    static getUserByID(parameter, callback)
+    {
+        const sql = 'SELECT * FROM Users WHERE UserID = ?;';
+        this.db().query(sql, parameter, (err, resultados) => {
+            if (err) {
+                console.log("ERROR @ UserTable.getUserByID\n", err);
+            }
+            else {
+                if (resultados[0] === undefined)
+                    callback(null);
+                else
+                    callback(resultados);
+            }
+        })
+    }
     static getUserIdByUsername(parameter, callback) {
         // Return UserId as result of a given username
         const sql = 'SELECT UserID FROM Users WHERE Username = ?;';
