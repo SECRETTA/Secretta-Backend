@@ -37,6 +37,10 @@ module.exports = app => {
 
     // Get tasks by user id and return formatted json
     app.get('/api/task/userid/:userID', function (req, res){
+        var resDict = {};
+        resDict['userID'] = req.params.userID;
+        resDict['tasks'] = [];
+
         TaskTable.getByUserID(req.params.userID, results => {
             if (results === null) {
                 // User not found
@@ -54,9 +58,6 @@ module.exports = app => {
                     }
                     else{
                         userResults = userResults[0];
-                        var resDict = {};
-                        resDict['userID'] = req.params.userID;
-                        resDict['tasks'] = [];
                         var endTime;
                         for (let i = 0; i < results.length; i++) {
                             /*Find Customer Name by CustomerID*/
@@ -66,20 +67,24 @@ module.exports = app => {
                                     view = new errorView(500)
                                     view.message(`Customer '${results.CustomerID}' not found.`)
                                     res.status(500).send(view.html())
+
                                 }
                                 else{
-                                    // console.log(customerResults);
                                     endTime = new Date((new Date (results[i].Start)).getTime() + userResults.TaskInterval*60000);
+                                    console.log("Endtime antes da mudanca")
+                                    console.log(endTime)
                                     endTime = endTime.toISOString().slice(0, 19).replace('T', ' ');
+                                    console.log("Endtime depois da mudanca")
+                                    console.log(endTime)
                                     resDict['tasks'].push({'start': results[i].Start, 'end': endTime,
                                     'customerName':customerResults.Name , 'customerID':results[i].CustomerID});
+                                    console.log(resDict);
+                                    if (i+1 == results.length){ res.json(resDict); } // Don't touch it's art
                                 }
-                            })
-                            console.log(resDict);
-                            console.log(endTime);
+                            }) // From this point on, resDict has no longer values
                         }
-                        res.json(resDict);
                     }
+                    
                 })
             }       
         })
