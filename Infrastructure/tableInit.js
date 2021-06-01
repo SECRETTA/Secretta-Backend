@@ -10,9 +10,7 @@ class TableInit {
     static async run(callback) {
         // populate_tables = this.populateTables();
 
-        console.log('iniciou ---------- ')
         await this.deleteTables();
-        console.log('deletou aqui')
         await this.createTables();
         await this.populateTables();
     }
@@ -121,19 +119,22 @@ class TableInit {
             Phone,
             Email,
             Username,
-            Bio
+            Bio,
+            TaskInterval
         ) VALUES (
             'Joao Pedro Brandao',
             '21988888888',
             'jp.brs@poli.ufrj.br',
             'jpbrs',
-            'Aluno de ECI. 100 reais a hora de programação'
+            'Aluno de ECI. 100 reais a hora de programação',
+            60
             ), (
             'Pedro Maciel Xavier',
             '24999999999',
             'pedromxavier@poli.ufrj.br',
             'pedromxavier',
-            'Um menino sonhador'
+            'Um menino sonhador',
+            45
         );
 
         INSERT INTO Customers (

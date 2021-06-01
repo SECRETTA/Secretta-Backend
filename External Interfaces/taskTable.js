@@ -29,7 +29,7 @@ class TaskTable extends Table {
         const sql_query = 'SELECT * FROM Tasks WHERE UserID = ?'
         this.db().query(sql_query, [UserID], (err, results) => {
             if (err)
-                console.log("ERROR @ TaskTable.getByUsername\n", err);
+                console.log("ERROR @ TaskTable.getByUserID\n", err);
             else {
                 if (results.length > 0) {
                     callback(results)
