@@ -31,7 +31,7 @@ module.exports = app => {
     // Add task
     app.post('/api/task/add/', (req, res) => {
         const newTask = req.body
-        TaskTable.AddTask(newTask.Name, newTask.Place, newTask.Customer, newTask.Timestamp)
+        TaskTable.addTask(newTask.Name, newTask.Place, newTask.CustomerID, newTask.Start, newTask.UserID)
         res.send('Tarefa adicionada com sucesso \n')
     });
 

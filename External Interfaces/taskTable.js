@@ -2,10 +2,10 @@ const Table = require('./table');
 
 class TaskTable extends Table {
 
-    static addTask(Name, Place, Customer, Timestamp) {
+    static addTask(Name, Place, CustomerID, Start, UserID) {
         // DOC ME PLEASE!
-        const sql = "INSERT INTO Tasks (Name, Place, Customer, Timestamp, UserID) VALUES (?,?,?,?))"
-        this.db().query(sql, [Name, Place, Customer, Timestamp], (err, results) => {
+        const sql = "INSERT INTO Tasks (Name, Place, CustomerID, Start, UserID) VALUES (?,?,?,?,?)"
+        this.db().query(sql, [Name, Place, CustomerID, Start, UserID], (err, results) => {
             if (err)
                 console.log("ERROR @ TaskTable.addTask\n", err);
             else
