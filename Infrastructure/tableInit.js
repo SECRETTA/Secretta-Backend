@@ -1,3 +1,4 @@
+const TaskTable = require('../External Interfaces/taskTable')
 const DataBase = require('./database');
 
 class TableInit {
@@ -13,6 +14,8 @@ class TableInit {
         await this.deleteTables();
         await this.createTables();
         await this.populateTables();
+        await TaskTable.addRecentTask("Tarefa Teste", "HomeOffice","1","1")
+
     }
 
     static  deleteTables() {
