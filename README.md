@@ -49,4 +49,4 @@ database = "<your_schema>"
 
 ## Database Diagram
 
-<img src="./DiagramaTabelas.png" width="500" height="750">
+<img src="./DiagramaTabelas.png" width="500" height="550">
