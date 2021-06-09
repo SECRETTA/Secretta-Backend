@@ -34,7 +34,6 @@ database = "<your_schema>"
   "Place": "Homeoffice", \
   "CustomerID": 1, \
   "Start": "2022-04-19T01:22:22.000Z", \
-  "ServiceID": 4, \
   "UserID": 1 \
 }
     
@@ -48,6 +47,6 @@ database = "<your_schema>"
   "Bio":"Teste de criação de usuário via CURL" \
 }
 
-## Database Schema
+## Database Diagram
 
 <img src="./DiagramaTabelas.png" width="500" height="750">
