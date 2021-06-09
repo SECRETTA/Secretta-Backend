@@ -27,7 +27,7 @@ database = "<your_schema>"
 
 ## User and Task POST Json Format
 
-### Task 
+### Task : /api/task/add/
 
 { \
   "Name": "Tarefa Teste", \
@@ -37,7 +37,7 @@ database = "<your_schema>"
   "UserID": 1 \
 }
     
-### User
+### User : /api/user/add
 
 { \
   "Name":"Usador de Pogramas", \
