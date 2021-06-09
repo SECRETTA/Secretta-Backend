@@ -35,6 +35,15 @@ module.exports = app => {
         res.send('Tarefa adicionada com sucesso \n')
     });
 
+    // Add recent task
+    app.post('/api/task/addrecent/', (req, res) => {
+        const newTask = req.body
+        TaskTable.addRecentTask(newTask.Name, newTask.Place, newTask.CustomerID, newTask.UserID)
+        res.send('Tarefa recente adicionada com sucesso \n')
+    });
+
+
+
     // Get tasks by user id and return formatted json
     app.get('/api/task/userid/:userID', function (req, res){
         var resDict = {};

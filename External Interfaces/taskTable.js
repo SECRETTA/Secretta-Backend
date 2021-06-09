@@ -13,6 +13,23 @@ class TaskTable extends Table {
         })
     }
 
+    static addRecentTask(Name, Place, CustomerID, UserID) {
+        for(var i = 1 ; i < 10; i++){
+            var today = new Date();
+            var Start = new Date();
+            Start.setDate(today.getDate()+i);
+            Start = Start.toISOString().slice(0,19).replace("T"," ");
+            const sql = "INSERT INTO Tasks (Name, Place, CustomerID, Start, UserID) VALUES (?,?,?,?,?)"
+            this.db().query(sql, [Name+String(i), Place, CustomerID, Start, UserID], (err, results) => {
+                if (err)
+                    console.log("ERROR @ TaskTable.addTask\n", err);
+                else
+                    console.log("RESULTS @ TaskTable.addTask\n", results);
+            })
+        }
+        // DOC ME PLEASE!
+    }
+
     static getAll(callback) {
         // DOC ME PLEASE!
         const sql = 'SELECT * FROM Tasks'
