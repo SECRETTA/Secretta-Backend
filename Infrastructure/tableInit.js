@@ -4,6 +4,8 @@ const DataBase = require('./database');
 class TableInit {
     // DOC ME PLEASE!
 
+    
+
     static db() {
         return (new DataBase).pool;
     }
@@ -14,14 +16,14 @@ class TableInit {
         await this.deleteTables();
         await this.createTables();
         await this.populateTables();
-        await TaskTable.addRecentTask("Tarefa Teste", "HomeOffice","1","1")
 
+        await this.populateSession();
+        await this.populateTasks();
     }
 
     static  deleteTables() {
         // DOC ME PLEASE!
         const sql_query= `DROP TABLE IF EXISTS Tasks;
-                          DROP TABLE IF EXISTS Schedules;
                           DROP TABLE IF EXISTS Chats;
                           DROP TABLE IF EXISTS Customers;
                           DROP TABLE IF EXISTS Tasks;
@@ -55,19 +57,12 @@ class TableInit {
             PRIMARY KEY (UserID)
         );
         CREATE TABLE IF NOT EXISTS Session(
-            SessionID int,
-            Recurrent bool,
+            SessionID int NOT NULL AUTO_INCREMENT,
             Start Datetime,
-            End Datetime,
-            PRIMARY KEY (SessionID)
-        );
-        CREATE TABLE IF NOT EXISTS Schedules(
-            ScheduleID int NOT NULL AUTO_INCREMENT,
-            SessionID int,
             UserID int,
-            PRIMARY KEY (ScheduleID),
-            FOREIGN KEY (SessionID) REFERENCES Session (SessionID),
-            FOREIGN KEY (UserID) REFERENCES Users (UserID)
+            End Datetime,
+            FOREIGN KEY (UserID) REFERENCES Users (UserID),
+            PRIMARY KEY (SessionID)
         );
         CREATE TABLE IF NOT EXISTS Customers (
             CustomerID int NOT NULL AUTO_INCREMENT,
@@ -193,6 +188,83 @@ class TableInit {
                 }
             })
         });
+    }
+
+    static populateSession(callback) {
+        // DOC ME PLEASE!
+
+        for(var i=0; i<=7; i++){
+            var today = new Date();
+
+            var Start = new Date();
+            Start.setDate(today.getDate()+i);
+            Start.setMinutes(0);
+            Start.setSeconds(0);
+            var End = new Date(Start);
+            End.setHours(today.getHours()+1);
+            
+            Start = Start.toISOString().slice(0,19).replace("T"," ");
+            End = End.toISOString().slice(0,19).replace("T"," ");
+    
+            const sql_query = `
+            INSERT INTO Session(
+                Start,
+                UserID,
+                End
+            ) VALUES (
+                '${Start}',
+                1,
+                '${End}'
+            );`
+
+            this.db().query(sql_query, (err, results) => {
+                if (err)
+                    console.log("ERROR @ TaskTable.addTask\n", err);
+                else{
+
+                }
+            })
+        }
+
+    }
+
+    static populateTasks(callback) {
+        // DOC ME PLEASE!
+
+        for(var i=0; i<=7; i+=2){
+            var today = new Date();
+
+            var Start = new Date();
+            Start.setDate(today.getDate()+i);
+            Start.setMinutes(0);
+            Start.setSeconds(0);
+            
+            Start = Start.toISOString().slice(0,19).replace("T"," ");
+    
+            const sql_query = `
+            INSERT INTO Tasks(
+                Name,
+                Place,
+                CustomerID,
+                UserID,
+                Start
+            ) VALUES (
+                'Tarefa Teste ${i}',
+                'Home Office',
+                '1',
+                '1',
+                '${Start}'
+            );`
+
+            this.db().query(sql_query, (err, results) => {
+                if (err)
+                    console.log("ERROR @ TaskTable.addTask\n", err);
+                else{
+
+                }
+            })
+        }
+
     }
 }
 

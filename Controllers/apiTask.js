@@ -4,14 +4,14 @@ const CustomerTable = require('../External Interfaces/customerTable')
 const errorView = require('../View/errorView')
 
 module.exports = app => {
-    // Get all users
+    // Get all tasks
     app.get('/api/task/', (req, res) => {
         TaskTable.getAll(response => {
             res.json(response)
         })
     })
 
-    // Get user
+    // Get tasks by username
     app.get('/api/task/:userName', function (req, res) {
         UserTable.getUserIdByUsername(req.params.userName, user_id => {
             if (user_id === null) {
