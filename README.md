@@ -25,7 +25,7 @@ database = "<your_schema>"
 \
 `npm start` 
 
-## User and Task POST Json Format
+## Entities' POST Json Format
 
 ### Task : /api/task/add/
 
@@ -45,6 +45,14 @@ database = "<your_schema>"
   "Email":"usador@ufrj.br", \
   "Username":"usador", \
   "Bio":"Teste de criação de usuário via CURL" \
+}
+
+### Session : /api/session/add
+
+{\
+    "Start": "2021-06-12 05:00:00", \
+    "UserID": 2, \
+    "End": "2021-06-12 06:00:00" \
 }
 
 ## Database Diagram
