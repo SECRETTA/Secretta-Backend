@@ -14,15 +14,15 @@ class ValidateUser {
     }
 
     ValidateName(param) {
-        return this.ValidateLength(param, 30) // && (param.match(/^[\S ]+$/u) !== null);
+        return this.ValidateLength(param, 30)  && (param.match(/^[\S ]+$/u) !== null);
     }
 
     ValidatePhone(param) {
-        return this.ValidateLength(param, 11) // && (param.match(/^(\+[1-9][0-9]{1,2})?[ ]?([1-9][0-9])?[ ]?([1-9][0-9]{7,9})$/) !== null)
+        return this.ValidateLength(param, 11) && (param.match(/^(\+[1-9][0-9]{1,2})?[ ]?([1-9][0-9])?[ ]?([1-9][0-9]{7,9})$/) !== null)
     }
 
     ValidateEmail(param) {
-        return this.ValidateLength(param, 30) // && (param.match(/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/) !== null)
+        return this.ValidateLength(param, 30) && (param.match(/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/) !== null)
     }
 
     ValidateUsername(param) {
