@@ -33,7 +33,7 @@ database = "<your_schema>"
   "Name": "Tarefa Teste", \
   "Place": "Homeoffice", \
   "CustomerID": 1, \
-  "Start": "2022-04-19T01:22:22.000Z", \
+  "Start": "2022-04-19 01:22:22.00", \
   "UserID": 1 \
 }
     
