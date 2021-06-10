@@ -25,7 +25,7 @@ database = "<your_schema>"
 \
 `npm start` 
 
-## User and Task POST Json Format
+## Entities' POST Json Format
 
 ### Task : /api/task/add/
 
@@ -33,7 +33,7 @@ database = "<your_schema>"
   "Name": "Tarefa Teste", \
   "Place": "Homeoffice", \
   "CustomerID": 1, \
-  "Start": "2022-04-19T01:22:22.000Z", \
+  "Start": "2022-04-19 01:22:22.00", \
   "UserID": 1 \
 }
     
@@ -47,6 +47,14 @@ database = "<your_schema>"
   "Bio":"Teste de criação de usuário via CURL" \
 }
 
+### Session : /api/session/add
+
+{\
+    "Start": "2021-06-12 05:00:00", \
+    "UserID": 2, \
+    "End": "2021-06-12 06:00:00" \
+}
+
 ## Database Diagram
 
-<img src="./DiagramaTabelas.png" width="500" height="550">
+<img src="./DiagramaTabelas.png" width="500" height="400">
