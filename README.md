@@ -25,6 +25,10 @@ database = "<your_schema>"
 \
 `npm start` 
 
+## Swagger User Interface
+
+`localhost:3001/api-docs`
+
 ## Entities' POST Json Format
 
 ### Task : /api/task/add/
