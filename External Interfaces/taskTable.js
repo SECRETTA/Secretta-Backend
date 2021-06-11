@@ -1,4 +1,5 @@
 const Table = require('./table');
+const moment = require('moment');
 
 class TaskTable extends Table {
 
@@ -17,6 +18,9 @@ class TaskTable extends Table {
         // DOC ME PLEASE!
         const sql = 'SELECT * FROM Tasks'
         this.db().query(sql, (err, results) => {
+            results.forEach(element => {
+                element.Start = moment(element.Start).format("DD-MM-YY HH:mm:ss")
+            });
             if (err)
                 console.log("ERROR @ TaskTable.getAll\n", err);
             else
@@ -28,6 +32,9 @@ class TaskTable extends Table {
         // DOC ME PLEASE!
         const sql_query = 'SELECT * FROM Tasks WHERE UserID = ?'
         this.db().query(sql_query, [UserID], (err, results) => {
+            results.forEach(element => {
+                element.Start = moment(element.Start).format("DD-MM-YY HH:mm:ss")
+            });
             if (err)
                 console.log("ERROR @ TaskTable.getByUserID\n", err);
             else {

@@ -1,3 +1,4 @@
+const moment = require('moment');
 const Table = require('./table');
 
 class SessionTable extends Table {
@@ -17,6 +18,11 @@ class SessionTable extends Table {
         // DOC ME PLEASE!
         const sql = 'SELECT * FROM Session'
         this.db().query(sql, (err, results) => {
+            console.log(results[0].Start);
+            results.forEach(element => {
+                element.Start = moment(element.Start).format("DD-MM-YY HH:mm:ss")
+                element.End = moment(element.End).format("DD-MM-YY HH:mm:ss")
+            });
             if (err)
                 console.log("ERROR @ SessionTable.getAll\n", err);
             else
@@ -28,6 +34,10 @@ class SessionTable extends Table {
         // DOC ME PLEASE!
         const sql_query = 'SELECT * FROM Session WHERE UserID = ?'
         this.db().query(sql_query, [UserID], (err, results) => {
+            results.forEach(element => {
+                element.Start = moment(element.Start).format("DD-MM-YY HH:mm:ss")
+                element.End = moment(element.End).format("DD-MM-YY HH:mm:ss")
+            });
             if (err)
                 console.log("ERROR @ SessionTable.getByUserID\n", err);
             else {
@@ -51,6 +61,10 @@ class SessionTable extends Table {
                             WHERE Tasks.Start is NULL AND Session.UserID = ?;`
 
         this.db().query(sql_query, [UserID], (err, results) => {
+            results.forEach(element => {
+                element.Start = moment(element.Start).format("DD-MM-YY HH:mm:ss")
+                element.End = moment(element.End).format("DD-MM-YY HH:mm:ss")
+            });
             if (err)
                 console.log("ERROR @ SessionTable.getAvailableSessionsByUserId\n", err);
             else {
