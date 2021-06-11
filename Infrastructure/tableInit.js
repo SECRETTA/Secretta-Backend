@@ -52,7 +52,6 @@ class TableInit {
             Email varchar(30),
             Username varchar(12),
             Bio varchar(100),
-            TaskInterval int,
             UserID int NOT NULL AUTO_INCREMENT,
             PRIMARY KEY (UserID)
         );
@@ -117,22 +116,19 @@ class TableInit {
             Phone,
             Email,
             Username,
-            Bio,
-            TaskInterval
+            Bio
         ) VALUES (
             'Joao Pedro Brandao',
             '21988888888',
             'jp.brs@poli.ufrj.br',
             'jpbrs',
-            'Aluno de ECI. 100 reais a hora de programação',
-            60
+            'Aluno de ECI. 100 reais a hora de programação'
             ), (
             'Pedro Maciel Xavier',
             '24999999999',
             'pedromxavier@poli.ufrj.br',
             'pedromxavier',
-            'Um menino sonhador',
-            45
+            'Um menino sonhador'
         );
 
         INSERT INTO Customers (
