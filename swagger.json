@@ -1,0 +1,203 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "SECRETTA API",
+      "description": "API documentation"
+    },
+    "host": "localhost:3001",
+    "basePath": "/",
+    "tags": [
+      {
+        "name": "Users",
+        "description": "API for users in the system"
+      }
+    ],
+    "schemes": ["http"],
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+    "paths": {
+        "/api/user": {
+            "get": {
+                "tags": ["Users"],
+                "summary": "Get all users in system",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/user/add": {
+            "post": {
+              "tags": ["Users"],
+              "summary": "Add New User",
+              "description": "Create new user in system",
+              "parameters": [
+                {
+                  "name": "user",
+                  "in": "body",
+                  "description": "User that we want to create",
+                  "type":"object"
+                }
+              ],
+              "produces": ["application/json"],
+              "responses": {
+                "200": {
+                  "description": "New user is created"
+                }
+              }
+            }
+        },
+        "/api/user/userid/{id}": {
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "required": true,
+                "description": "ID of user that we want to find",
+                "type": "integer"
+              }
+            ],
+            "get": {
+                "tags": ["Users"],
+                "summary": "Get a user in the system by his id",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+            
+        },
+        "/api/task": {
+            "get": {
+                "tags": ["Tasks"],
+                "summary": "Get all tasks in system",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/task/add": {
+            "post": {
+              "tags": ["Tasks"],
+              "summary": "Add New Task",
+              "description": "Create new Task in system",
+              "parameters": [
+                {
+                  "name": "user",
+                  "in": "body",
+                  "description": "Task that we want to create",
+                  "type":"object"
+                }
+              ],
+              "produces": ["application/json"],
+              "responses": {
+                "200": {
+                  "description": "New task is created"
+                }
+              }
+            }
+        },
+        "/api/task/userid/{id}": {
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "required": true,
+                "description": "userID of the tasks that we want to find",
+                "type": "integer"
+              }
+            ],
+            "get": {
+                "tags": ["Tasks"],
+                "summary": "Get user's tasks in the system by his id",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+            
+          },
+          "/api/session": {
+              "get": {
+                  "tags": ["Sessions"],
+                  "summary": "Get all sessions in system",
+                  "responses": {
+                      "200": {
+                          "description": "OK"
+                      }
+                  }
+              }
+          },
+          "/api/session/add": {
+              "post": {
+                "tags": ["Sessions"],
+                "summary": "Add New Session",
+                "description": "Create new Session in system",
+                "parameters": [
+                  {
+                    "name": "session",
+                    "in": "body",
+                    "description": "Sessions that we want to create",
+                    "type":"object"
+                  }
+                ],
+                "produces": ["application/json"],
+                "responses": {
+                  "200": {
+                    "description": "New Session is created"
+                  }
+                }
+              }
+          },
+          "/api/session/{id}": {
+              "parameters": [
+                {
+                  "name": "id",
+                  "in": "path",
+                  "required": true,
+                  "description": "userID of the Session that we want to find",
+                  "type": "integer"
+                }
+              ],
+              "get": {
+                  "tags": ["Sessions"],
+                  "summary": "Get user's Sessions in the system by his id",
+                  "responses": {
+                      "200": {
+                          "description": "OK"
+                      }
+                  }
+              }
+              
+            },
+            "/api/session/available/{id}": {
+                "parameters": [
+                  {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "userID of the available Session that we want to find",
+                    "type": "integer"
+                  }
+                ],
+                "get": {
+                    "tags": ["Sessions"],
+                    "summary": "Get user's Available Sessions in the system by his id",
+                    "responses": {
+                        "200": {
+                            "description": "OK"
+                        }
+                    }
+                }
+                
+              }
+        
+    }
+}
+  

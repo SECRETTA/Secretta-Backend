@@ -1,9 +1,12 @@
 const customExpress = require('./config/customExpress');
 const DataBase = require('./Infrastructure/database');
 const TableInit = require('./Infrastructure/tableInit');
+const swaggerUi = require('swagger-ui-express');
+swaggerDocument = require('./swagger.json');
+
+
 // const SecrettaBot = require('./TelegramBot/secrettaBot');
 const app = customExpress();
-
 TableInit.run(console.log);
 
 // let bot = new SecrettaBot;
