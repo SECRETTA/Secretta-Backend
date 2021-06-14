@@ -62,11 +62,13 @@ class TableInit {
             );
         CREATE TABLE IF NOT EXISTS Chats(
             TelegramUserID int NOT NULL,
+            TelegramCustomerID int NOT NULL,
             UserID int NOT NULL,
             CustomerID int NOT NULL,
+            ChatState int,
             PRIMARY KEY (TelegramUserID),
             FOREIGN KEY (UserID) REFERENCES Users (UserID),
-            FOREIGN KEY (CustomerID) REFERENCES Customers (CustomerID),
+            FOREIGN KEY (CustomerID) REFERENCES Customers (CustomerID)
         );   
         `
 
