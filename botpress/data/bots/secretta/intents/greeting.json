@@ -1,0 +1,19 @@
+{
+  "name": "greeting",
+  "utterances": {
+    "en": [
+      "Oi",
+      "Olá",
+      "Bom dia",
+      "Boa tarde",
+      "Boa noite",
+      "E aí",
+      "Com licença",
+      "Oi Secretta"
+    ]
+  },
+  "slots": [],
+  "contexts": [
+    "global"
+  ]
+}

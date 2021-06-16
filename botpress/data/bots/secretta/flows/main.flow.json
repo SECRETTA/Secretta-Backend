@@ -1,0 +1,44 @@
+{
+  "version": "0.0.1",
+  "catchAll": {
+    "onReceive": [],
+    "next": []
+  },
+  "startNode": "Start",
+  "nodes": [
+    {
+      "id": "entry",
+      "name": "Start",
+      "next": [
+        {
+          "condition": "event.nlu.intent.name === 'none'",
+          "node": "none_message"
+        }
+      ],
+      "onEnter": [],
+      "onReceive": null
+    },
+    {
+      "id": "58a637911b",
+      "name": "none_message",
+      "next": [],
+      "onEnter": [
+        "say #!builtin_text-iVBzXn"
+      ],
+      "onReceive": null
+    },
+    {
+      "id": "b717598048",
+      "name": "information-basic",
+      "next": [
+        {
+          "condition": "true",
+          "node": ""
+        }
+      ],
+      "onEnter": [],
+      "onReceive": null,
+      "type": "standard"
+    }
+  ]
+}

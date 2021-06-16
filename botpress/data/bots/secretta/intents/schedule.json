@@ -1,0 +1,17 @@
+{
+  "name": "schedule",
+  "utterances": {
+    "en": [
+      "Quando tem horário disponível",
+      "Quando poderá me atender?",
+      "Gostaria de marcar um horário.",
+      "Quero agendar um horário.",
+      "Quero agendar uma consulta.",
+      "Gostaria de agendar uma consulta."
+    ]
+  },
+  "slots": [],
+  "contexts": [
+    "global"
+  ]
+}
