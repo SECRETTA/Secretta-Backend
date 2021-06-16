@@ -126,3 +126,6 @@ package.json
 # Botpress Binaries
 botpress/bp
 botpress/nlu*
+
+# Telegram Bot Token
+botpress/data/bots/secretta/config/channel-telegram.json
