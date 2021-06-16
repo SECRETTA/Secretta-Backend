@@ -122,3 +122,7 @@ dist
 # Packages
 package-lock.json
 package.json
+
+# Botpress Binaries
+botpress/bp
+botpress/nlu-v0_0_4-linux-x64
