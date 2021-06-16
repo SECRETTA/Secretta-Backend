@@ -1,0 +1,12 @@
+{
+  "name": "tg-start",
+  "utterances": {
+    "en": [
+      "/start"
+    ]
+  },
+  "slots": [],
+  "contexts": [
+    "global"
+  ]
+}

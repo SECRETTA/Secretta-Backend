@@ -1,0 +1,35 @@
+[
+  {
+    "id": "builtin_text-9DGMni",
+    "formData": {
+      "markdown$en": true,
+      "typing$en": true,
+      "text$en": "{{temp.greeting}}"
+    },
+    "createdBy": "admin",
+    "createdOn": "2021-06-16T18:27:46.809Z",
+    "modifiedOn": "2021-06-16T19:14:53.098Z"
+  },
+  {
+    "id": "builtin_text-Yu2fam",
+    "formData": {
+      "markdown$en": true,
+      "typing$en": true,
+      "text$en": "{{temp.info}}"
+    },
+    "createdBy": "admin",
+    "createdOn": "2021-06-16T18:50:42.381Z",
+    "modifiedOn": "2021-06-16T18:52:49.435Z"
+  },
+  {
+    "id": "builtin_text-DMWm0S",
+    "formData": {
+      "markdown$en": true,
+      "typing$en": true,
+      "text$en": "{{session.response.body}}"
+    },
+    "createdBy": "admin",
+    "createdOn": "2021-06-16T19:23:31.678Z",
+    "modifiedOn": "2021-06-16T19:23:31.678Z"
+  }
+]

@@ -1,0 +1,125 @@
+{
+  "version": "0.0.1",
+  "catchAll": {
+    "onReceive": [],
+    "next": []
+  },
+  "startNode": "Start",
+  "nodes": [
+    {
+      "id": "entry",
+      "name": "Start",
+      "next": [
+        {
+          "condition": "event.nlu.intent.name === 'greeting'",
+          "node": "greeting"
+        },
+        {
+          "condition": "event.nlu.intent.name === 'information'",
+          "node": "api-info"
+        },
+        {
+          "condition": "event.nlu.intent.name === 'schedule'",
+          "node": "api-schedule"
+        }
+      ],
+      "onEnter": [
+        "setGreeting {\"name\":\"\",\"value\":\"\"}"
+      ],
+      "onReceive": null
+    },
+    {
+      "id": "d6affc3cbb",
+      "name": "greeting",
+      "next": [],
+      "onEnter": [
+        "say #!builtin_text-9DGMni"
+      ],
+      "onReceive": null,
+      "type": "standard"
+    },
+    {
+      "id": "skill-0e1b03",
+      "type": "skill-call",
+      "skill": "CallAPI",
+      "name": "api-schedule",
+      "flow": "skills/CallAPI-0e1b03.flow.json",
+      "next": [
+        {
+          "caption": "On success",
+          "condition": "temp.valid",
+          "node": ""
+        },
+        {
+          "caption": "On failure",
+          "condition": "!temp.valid",
+          "node": ""
+        }
+      ],
+      "onEnter": null,
+      "onReceive": null
+    },
+    {
+      "id": "skill-5eba94",
+      "type": "skill-call",
+      "skill": "CallAPI",
+      "name": "api-info",
+      "flow": "skills/CallAPI-5eba94.flow.json",
+      "next": [
+        {
+          "caption": "On success",
+          "condition": "temp.valid",
+          "node": "node-4a09"
+        },
+        {
+          "caption": "On failure",
+          "condition": "!temp.valid",
+          "node": ""
+        }
+      ],
+      "onEnter": null,
+      "onReceive": null
+    },
+    {
+      "id": "916907b965",
+      "name": "node-2bc0",
+      "next": [
+        {
+          "condition": "true",
+          "node": ""
+        }
+      ],
+      "onEnter": [],
+      "onReceive": null,
+      "type": "standard"
+    },
+    {
+      "id": "6de36ae23e",
+      "name": "node-1e66",
+      "next": [
+        {
+          "condition": "true",
+          "node": ""
+        }
+      ],
+      "onEnter": [],
+      "onReceive": null,
+      "type": "standard"
+    },
+    {
+      "id": "963f3f6e96",
+      "name": "node-4a09",
+      "next": [
+        {
+          "condition": "true",
+          "node": ""
+        }
+      ],
+      "onEnter": [
+        "say #!builtin_text-DMWm0S"
+      ],
+      "onReceive": null,
+      "type": "standard"
+    }
+  ]
+}

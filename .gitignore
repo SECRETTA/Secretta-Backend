@@ -107,6 +107,7 @@ dist
 
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
+.vscode
 
 # yarn v2
 .yarn/cache
@@ -117,3 +118,14 @@ dist
 
 # Configuration files
 *.conf
+
+# Packages
+package-lock.json
+package.json
+
+# Botpress Binaries
+botpress/bp
+botpress/nlu*
+
+# Telegram Bot Token
+botpress/data/bots/secretta/config/channel-telegram.json

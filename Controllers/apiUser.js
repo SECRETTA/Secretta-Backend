@@ -104,7 +104,7 @@ module.exports = app => {
                         deleteUser.Username,
                         deleteUser.Bio,
                         user_response)
-                        res.send('Usuario deletado com sucesso.\n');
+                        res.send('Usuário deletado com sucesso.\n');
                 } else { 
                     console.log("Dados de usuário inválidos.");
                     res.send('Dados de usuário inválidos.\n');

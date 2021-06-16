@@ -1,0 +1,16 @@
+{
+  "name": "information",
+  "utterances": {
+    "en": [
+      "Como posso saber mais?",
+      "Gostaria de saber mais.",
+      "O que vocês fazem?",
+      "O que vocês fazem, exatamente?",
+      "Preciso de mais informações."
+    ]
+  },
+  "slots": [],
+  "contexts": [
+    "global"
+  ]
+}
